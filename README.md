@@ -1,19 +1,46 @@
-# Kopi
+<div align="center">
 
-Kopi is a layered Codex plugin for project managers and software architects. It connects evidence, decisions, meetings, delivery state, analysis, and presentation work while keeping each workflow independently usable.
+# ☕ Kopi
+
+**A layered Codex plugin for project managers and software architects.**
+
+Connecting evidence, decisions, meetings, delivery state, analysis, and presentation work —
+while keeping each workflow independently usable.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Codex Plugin](https://img.shields.io/badge/Codex-Plugin-blue.svg)](.codex-plugin/plugin.json)
+[![Skills](https://img.shields.io/badge/Skills-10-green.svg)](#-skill-catalog)
+[![Validation](https://img.shields.io/badge/Validation-deterministic-brightgreen.svg)](#-validation)
+
+</div>
+
+---
 
 The central router is [`kopi-mode`](skills/kopi-mode/SKILL.md). Start there when a request spans more than one deliverable. Invoke a specialist skill directly when the outcome is already clear.
 
-## Layers
+## 📑 Contents
 
-1. **Router** — chooses the smallest complete workflow and sequences connected work.
-2. **Workflow skills** — own one professional outcome each.
-3. **Playbooks** — describe the end-to-end path from request to verified deliverable.
-4. **References and rubrics** — provide schemas, prompts, source rules, and quality gates only when needed.
-5. **Adapters** — use available presentation, calendar, tracker, document, browser, and spreadsheet capabilities without binding the reasoning layer to one vendor.
-6. **Evaluation** — checks structure, routing, authority boundaries, and deliverable behavior.
+- [Layers](#-layers)
+- [Skill catalog](#-skill-catalog)
+- [Operating model](#-operating-model)
+- [Example requests](#-example-requests)
+- [Package map](#-package-map)
+- [Validation](#-validation)
+- [Intentional boundary](#-intentional-boundary)
+- [License](#-license)
 
-## Skill catalog
+## 🧱 Layers
+
+| # | Layer | Responsibility |
+|:-:|---|---|
+| 1 | **Router** | Chooses the smallest complete workflow and sequences connected work. |
+| 2 | **Workflow skills** | Own one professional outcome each. |
+| 3 | **Playbooks** | Describe the end-to-end path from request to verified deliverable. |
+| 4 | **References & rubrics** | Provide schemas, prompts, source rules, and quality gates only when needed. |
+| 5 | **Adapters** | Use available presentation, calendar, tracker, document, browser, and spreadsheet capabilities without binding the reasoning layer to one vendor. |
+| 6 | **Evaluation** | Checks structure, routing, authority boundaries, and deliverable behavior. |
+
+## 🧰 Skill catalog
 
 | Skill | Use it for | Primary output |
 |---|---|---|
@@ -28,19 +55,20 @@ The central router is [`kopi-mode`](skills/kopi-mode/SKILL.md). Start there when
 | [`challenge-deliverable`](skills/challenge-deliverable/SKILL.md) | Red-team review of plans, designs, and decks | Prioritized review findings without silent edits |
 | [`capture-learning`](skills/capture-learning/SKILL.md) | Recurring workflow failures and lessons | Evidence-backed structural improvement proposal |
 
-## Operating model
+## 🔗 Operating model
 
 Kopi follows a shared chain:
 
 ```text
-research + data -> architecture decisions -> meetings + work items -> portfolio -> presentation
+research + data ─▶ architecture decisions ─▶ meetings + work items ─▶ portfolio ─▶ presentation
 ```
 
 Each workflow can run alone. When composed, records retain source pointers and stable identities so claims can move into decisions, actions, metrics, and slides without being rewritten from memory.
 
-External changes are gated. Local analysis and drafts may proceed when in scope; sending invitations, changing trackers, posting messages, or updating shared systems requires explicit authority and destination checks. Create and update operations must be safe to retry and must be read back after execution.
+> [!IMPORTANT]
+> **External changes are gated.** Local analysis and drafts may proceed when in scope; sending invitations, changing trackers, posting messages, or updating shared systems requires explicit authority and destination checks. Create and update operations must be safe to retry and must be read back after execution.
 
-## Example requests
+## 💬 Example requests
 
 - “Use `kopi-mode` to turn these delivery metrics and architecture notes into the right materials for tomorrow’s steering review.”
 - “Build a decision deck from these findings and create the actual PowerPoint.”
@@ -48,7 +76,7 @@ External changes are gated. Local analysis and drafts may proceed when in scope;
 - “Reconcile active initiatives and tell me which three need intervention.”
 - “Prepare an architecture review; do not send invitations until I approve.”
 
-## Package map
+## 🗂️ Package map
 
 ```text
 kopi/
@@ -66,7 +94,7 @@ kopi/
 └── tests/test_validate_pack.py
 ```
 
-## Validation
+## ✅ Validation
 
 Run the deterministic pack checks from the repository root:
 
@@ -77,12 +105,12 @@ python3 kopi/scripts/validate_pack.py kopi
 
 The validator checks the manifest, skill metadata, resource reachability, internal links, unfinished placeholders, and legacy implementation terms. The behavioral cases and latest run record are in [`evals/scenarios.md`](evals/scenarios.md) and [`evals/results.md`](evals/results.md).
 
-## Intentional boundary
+## 🚧 Intentional boundary
 
-Kopi is not a software-delivery agent. It does not carry over pull-request mechanics, worktree handling, CI monitoring, deployment workflows, TDD rules, language-specific coding conventions, or autonomous code repair. Once an architecture decision becomes implementation work, hand that scope to dedicated engineering skills.
+Kopi is **not** a software-delivery agent. It does not carry over pull-request mechanics, worktree handling, CI monitoring, deployment workflows, TDD rules, language-specific coding conventions, or autonomous code repair. Once an architecture decision becomes implementation work, hand that scope to dedicated engineering skills.
 
 The plugin manifest is repository-local. This build does not modify a personal or team marketplace.
 
-## License
+## 📄 License
 
-MIT. See [`LICENSE`](LICENSE).
+Released under the **MIT** License. See [`LICENSE`](LICENSE).
