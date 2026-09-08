@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run Meeting"
+  short_description: "Prepare, schedule, and close meetings"
+  default_prompt: "Use $run-meeting to handle this meeting."

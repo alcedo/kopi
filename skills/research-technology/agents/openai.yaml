@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Technology"
+  short_description: "Research current tools, frameworks, and AI"
+  default_prompt: "Use $research-technology to research these tools."

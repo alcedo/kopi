@@ -1,0 +1,4 @@
+interface:
+  display_name: "Challenge Deliverable"
+  short_description: "Stress-test plans, decks, and decisions"
+  default_prompt: "Use $challenge-deliverable to review this artifact."

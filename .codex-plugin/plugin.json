@@ -1,0 +1,33 @@
+{
+  "name": "kopi",
+  "version": "0.1.0",
+  "description": "Evidence-led workflows for project managers and software architects.",
+  "author": {
+    "name": "Kopi contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "project-management",
+    "software-architecture",
+    "presentations",
+    "meetings",
+    "research",
+    "data-analysis"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Kopi",
+    "shortDescription": "Run evidence-led project and architecture work.",
+    "longDescription": "Kopi connects technology research, architecture decisions, meetings, portfolio control, data analysis, and presentation creation through reviewable evidence and clear action ownership.",
+    "developerName": "Kopi contributors",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Turn my project evidence into an executive deck.",
+      "Prepare and schedule an architecture review.",
+      "Research recent framework changes and their impact."
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Capture Learning"
+  short_description: "Turn repeated failures into durable improvements"
+  default_prompt: "Use $capture-learning to preserve this lesson."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Presentation"
+  short_description: "Create decision-ready presentation decks"
+  default_prompt: "Use $build-presentation to create this deck."

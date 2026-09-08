@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recall Work"
+  short_description: "Reconstruct current project state"
+  default_prompt: "Use $recall-work to catch me up on this project."

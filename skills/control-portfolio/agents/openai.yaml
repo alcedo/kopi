@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control Portfolio"
+  short_description: "Reconcile initiatives, risks, and interventions"
+  default_prompt: "Use $control-portfolio to review these initiatives."

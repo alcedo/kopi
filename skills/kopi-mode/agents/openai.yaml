@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kopi Mode"
+  short_description: "Route project and architecture work"
+  default_prompt: "Use $kopi-mode to organize this work."

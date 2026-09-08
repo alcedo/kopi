@@ -1,0 +1,88 @@
+# Kopi
+
+Kopi is a layered Codex plugin for project managers and software architects. It connects evidence, decisions, meetings, delivery state, analysis, and presentation work while keeping each workflow independently usable.
+
+The central router is [`kopi-mode`](skills/kopi-mode/SKILL.md). Start there when a request spans more than one deliverable. Invoke a specialist skill directly when the outcome is already clear.
+
+## Layers
+
+1. **Router** — chooses the smallest complete workflow and sequences connected work.
+2. **Workflow skills** — own one professional outcome each.
+3. **Playbooks** — describe the end-to-end path from request to verified deliverable.
+4. **References and rubrics** — provide schemas, prompts, source rules, and quality gates only when needed.
+5. **Adapters** — use available presentation, calendar, tracker, document, browser, and spreadsheet capabilities without binding the reasoning layer to one vendor.
+6. **Evaluation** — checks structure, routing, authority boundaries, and deliverable behavior.
+
+## Skill catalog
+
+| Skill | Use it for | Primary output |
+|---|---|---|
+| [`kopi-mode`](skills/kopi-mode/SKILL.md) | Connected or ambiguous requests | Routed workflow and coordinated deliverables |
+| [`build-presentation`](skills/build-presentation/SKILL.md) | PowerPoint and executive narratives | Render-verified deck |
+| [`run-meeting`](skills/run-meeting/SKILL.md) | Meeting preparation, scheduling, and closure | Agenda, pre-read, event, decisions, and actions |
+| [`control-portfolio`](skills/control-portfolio/SKILL.md) | Multi-initiative visibility and intervention | Reconciled register and executive intervention view |
+| [`research-technology`](skills/research-technology/SKILL.md) | Current tools, frameworks, releases, and AI capabilities | Time-stamped, cited research brief |
+| [`decide-architecture`](skills/decide-architecture/SKILL.md) | Architecture options and target-state decisions | Decision record with tradeoffs and impact |
+| [`analyze-data`](skills/analyze-data/SKILL.md) | Delivery, operational, and business datasets | Reproducible analysis and honest visuals |
+| [`recall-work`](skills/recall-work/SKILL.md) | Catch-up, resume, and handoff | Current-state status capsule |
+| [`challenge-deliverable`](skills/challenge-deliverable/SKILL.md) | Red-team review of plans, designs, and decks | Prioritized review findings without silent edits |
+| [`capture-learning`](skills/capture-learning/SKILL.md) | Recurring workflow failures and lessons | Evidence-backed structural improvement proposal |
+
+## Operating model
+
+Kopi follows a shared chain:
+
+```text
+research + data -> architecture decisions -> meetings + work items -> portfolio -> presentation
+```
+
+Each workflow can run alone. When composed, records retain source pointers and stable identities so claims can move into decisions, actions, metrics, and slides without being rewritten from memory.
+
+External changes are gated. Local analysis and drafts may proceed when in scope; sending invitations, changing trackers, posting messages, or updating shared systems requires explicit authority and destination checks. Create and update operations must be safe to retry and must be read back after execution.
+
+## Example requests
+
+- “Use `kopi-mode` to turn these delivery metrics and architecture notes into the right materials for tomorrow’s steering review.”
+- “Build a decision deck from these findings and create the actual PowerPoint.”
+- “Research recent changes in our agent frameworks and assess whether the architecture roadmap should change.”
+- “Reconcile active initiatives and tell me which three need intervention.”
+- “Prepare an architecture review; do not send invitations until I approve.”
+
+## Package map
+
+```text
+kopi/
+├── .codex-plugin/plugin.json
+├── skills/
+│   ├── kopi-mode/
+│   │   ├── SKILL.md
+│   │   ├── playbooks/
+│   │   └── references/
+│   └── <specialist-skill>/
+│       ├── SKILL.md
+│       └── references/
+├── evals/
+├── scripts/validate_pack.py
+└── tests/test_validate_pack.py
+```
+
+## Validation
+
+Run the deterministic pack checks from the repository root:
+
+```bash
+python3 -m unittest kopi/tests/test_validate_pack.py -v
+python3 kopi/scripts/validate_pack.py kopi
+```
+
+The validator checks the manifest, skill metadata, resource reachability, internal links, unfinished placeholders, and legacy implementation terms. The behavioral cases and latest run record are in [`evals/scenarios.md`](evals/scenarios.md) and [`evals/results.md`](evals/results.md).
+
+## Intentional boundary
+
+Kopi is not a software-delivery agent. It does not carry over pull-request mechanics, worktree handling, CI monitoring, deployment workflows, TDD rules, language-specific coding conventions, or autonomous code repair. Once an architecture decision becomes implementation work, hand that scope to dedicated engineering skills.
+
+The plugin manifest is repository-local. This build does not modify a personal or team marketplace.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).

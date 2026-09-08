@@ -1,0 +1,4 @@
+interface:
+  display_name: "Decide Architecture"
+  short_description: "Compare and record architecture decisions"
+  default_prompt: "Use $decide-architecture to design this system."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analyze Data"
+  short_description: "Turn data into reproducible decisions"
+  default_prompt: "Use $analyze-data to analyze this dataset."
