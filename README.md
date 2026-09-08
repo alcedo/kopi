@@ -2,7 +2,7 @@
 
 # ☕ Kopi
 
-**A layered Codex plugin for project managers and software architects.**
+**Agentic skills for project managers and software architects.**
 
 Connecting evidence, decisions, meetings, delivery state, analysis, and presentation work —
 while keeping each workflow independently usable.
