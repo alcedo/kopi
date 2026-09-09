@@ -155,12 +155,7 @@ reproducible archives and OpenAI marketplace resolution. These checks do not
 replace a fresh install in each host. The behavioral cases and run records are
 in [`evals/scenarios.md`](evals/scenarios.md) and [`evals/results.md`](evals/results.md).
 
-## 🚧 Intentional boundary
 
-Kopi is **not** a software-delivery agent. It does not carry over pull-request mechanics, worktree handling, CI monitoring, deployment workflows, TDD rules, language-specific coding conventions, or autonomous code repair. Once an architecture decision becomes implementation work, hand that scope to dedicated engineering skills.
-
-The build creates distribution files under `dist/`. It does not install plugins,
-modify personal marketplaces, or publish to shared directories.
 
 ## 📄 License
 
