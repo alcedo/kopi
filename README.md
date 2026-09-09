@@ -58,11 +58,31 @@ Kopi does not install libraries or connect accounts.
 | # | Layer | Responsibility |
 |:-:|---|---|
 | 1 | **Router** | Chooses the smallest complete workflow and sequences connected work. |
-| 2 | **Workflow skills** | Own one professional outcome each. |
-| 3 | **Playbooks** | Describe the end-to-end path from request to verified deliverable. |
-| 4 | **References & rubrics** | Provide schemas, prompts, source rules, and quality gates only when needed. |
-| 5 | **Adapters** | Use available presentation, calendar, tracker, document, browser, and spreadsheet capabilities without binding the reasoning layer to one vendor. |
-| 6 | **Evaluation** | Checks structure, routing, authority boundaries, and deliverable behavior. |
+| 2 | **Foundational playbooks** | Own the moves every workflow repeats, so no workflow restates them. |
+| 3 | **Workflow skills** | Own one professional outcome each. |
+| 4 | **Workflow playbooks** | Describe the end-to-end path from request to verified deliverable, calling the foundation rather than duplicating it. |
+| 5 | **References & rubrics** | Provide schemas, prompts, source rules, and quality gates only when needed. |
+| 6 | **Adapters** | Use available presentation, calendar, tracker, document, browser, and spreadsheet capabilities without binding the reasoning layer to one vendor. |
+| 7 | **Evaluation** | Checks structure, routing, authority boundaries, and deliverable behavior. |
+
+## 🧩 Foundational playbooks
+
+Shared moves that the workflow skills call instead of reimplementing. Each fires
+on its own trigger, in whichever workflow is running.
+
+| Playbook | When it runs |
+|---|---|
+| [Frame the request](skills/kopi-mode/playbooks/frame-request.md) | Start of every request, before collecting or drafting |
+| [Gather evidence](skills/kopi-mode/playbooks/gather-evidence.md) | Any claim that must stay traceable to a source |
+| [Sketch options](skills/kopi-mode/playbooks/sketch-options.md) | A structure, layout, framing, or definition fork that observation can settle |
+| [Compare options](skills/kopi-mode/playbooks/compare-options.md) | A consequential or hard-to-reverse choice |
+| [Delegate work](skills/kopi-mode/playbooks/delegate-work.md) | Work fans out to parallel workers |
+| [Verify the deliverable](skills/kopi-mode/playbooks/verify-deliverable.md) | Before any workflow declares done |
+| [Deliver the artifact](skills/kopi-mode/playbooks/deliver-artifact.md) | End of every request |
+| [Pause safely](skills/kopi-mode/playbooks/pause-safely.md) | Explicit pause, going offline, or losing session context |
+| [Follow through](skills/kopi-mode/playbooks/follow-through.md) | The artifact shipped and other people must now act |
+| [Autonomous run](skills/kopi-mode/playbooks/autonomous-run.md) | Work must run to completion without checking in |
+| [Author a playbook](skills/kopi-mode/playbooks/author-playbook.md) | A workflow recurs often enough to encode |
 
 ## 🧰 Skill catalog
 

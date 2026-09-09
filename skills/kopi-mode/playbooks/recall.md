@@ -8,5 +8,5 @@ Use `recall-work`.
 4. Report current workstreams, status, blockers, stale or contradictory claims, and the one best next move.
 5. Keep raw history out of the final brief. Preserve source pointers so the user can verify it.
 
-Use the prior trail to avoid rediscovery, but do not mistake prior self-report for current truth.
+Use the prior trail to avoid rediscovery, but do not mistake prior self-report for current truth. This playbook is the resume half of [pause safely](pause-safely.md).
 

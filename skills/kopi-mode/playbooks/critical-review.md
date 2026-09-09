@@ -3,7 +3,7 @@
 Use `challenge-deliverable`.
 
 1. State the artifact's intended audience, decision, and success criteria.
-2. Review through independent lenses appropriate to the artifact.
+2. Review through independent lenses appropriate to the artifact, one lens per worker under [delegate work](delegate-work.md).
 3. Merge duplicate findings and surface genuine disagreement.
 4. Judge every finding against evidence, user goals, cost, and timing.
 5. Classify findings as act on, consider, noted, or dismissed.
