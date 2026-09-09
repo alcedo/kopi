@@ -21,7 +21,14 @@ class PackageTests(unittest.TestCase):
                 names = archive.namelist()
                 self.assertIn('plugin.json', names)
                 self.assertIn('.claude-plugin/plugin.json', names)
-                self.assertEqual(10, sum(name.endswith('/SKILL.md') for name in names))
+                expected_skills = {
+                    path.relative_to(ROOT).as_posix()
+                    for path in (ROOT / 'skills').glob('*/SKILL.md')
+                }
+                self.assertEqual(
+                    expected_skills,
+                    {name for name in names if name.endswith('/SKILL.md')},
+                )
                 self.assertFalse(any('.git/' in name or '__pycache__' in name or name.startswith('dist/') for name in names))
                 archive.extractall(output / 'extracted')
             from validate_pack import validate_plugin

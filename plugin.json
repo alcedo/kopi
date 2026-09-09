@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kopi",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Evidence-led workflows for project managers and software architects.",
   "author": {
     "name": "Kopi contributors"

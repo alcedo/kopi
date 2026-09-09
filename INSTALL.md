@@ -1,6 +1,6 @@
 # Install Kopi
 
-Kopi contains ten instruction-based skills. Installing it adds workflows; it does
+Kopi contains eleven instruction-based skills. Installing it adds workflows; it does
 not install Python libraries, connect accounts, provide an MCP server, or grant
 access to calendars, files, trackers, or conversation history.
 
@@ -22,9 +22,9 @@ python3 scripts/package_plugin.py
 
 The builder produces:
 
-- `dist/kopi-0.1.1.zip`: a plugin ZIP with manifests at the archive root.
-- `dist/kopi-openai-0.1.1/`: a self-contained local OpenAI marketplace.
-- `dist/kopi-openai-0.1.1.zip`: the same marketplace for transfer to another machine.
+- `dist/kopi-0.1.2.zip`: a plugin ZIP with manifests at the archive root.
+- `dist/kopi-openai-0.1.2/`: a self-contained local OpenAI marketplace.
+- `dist/kopi-openai-0.1.2.zip`: the same marketplace for transfer to another machine.
 
 The build includes only release files and is reproducible. Identical rebuilds
 are allowed. For changed contents, bump all manifest versions together or pass
@@ -54,7 +54,7 @@ Do not use that remote command to test unpublished local changes.
 ## Claude chat, Desktop, and Cowork
 
 Build the plugin ZIP above. In Claude, open **Customize → Plugins**, choose the
-custom plugin upload option, and select `dist/kopi-0.1.1.zip`. Use `/` or `+` to
+custom plugin upload option, and select `dist/kopi-0.1.2.zip`. Use `/` or `+` to
 find Kopi's skills. For Cowork, first open the Cowork tab, then Customize.
 Plugin availability depends on your plan and organization settings. A plugin
 can load in chat while file creation, rendering, or connected-source operations
@@ -66,7 +66,7 @@ Use the generated OpenAI marketplace, not the standalone plugin ZIP, for the
 local installation route. In a terminal at this repository root:
 
 ```bash
-codex plugin marketplace add ./dist/kopi-openai-0.1.1
+codex plugin marketplace add ./dist/kopi-openai-0.1.2
 ```
 
 Restart the desktop app, open the **Plugins Directory**, select **Kopi Local**,
@@ -119,6 +119,7 @@ installed marketplace plugin of the same name takes precedence over a local copy
 | Meetings | Calendar connector, identities, time zones and appropriate account access for scheduling |
 | Portfolio and recall | In-scope records, uploaded evidence, or connected source/history tools |
 | Architecture, review and learning | Relevant source material; these can work from supplied text |
+| Performance reviews | Person's role, supplied 360 feedback and self-reflection; goals optional; text is sufficient, file output uses available document tools |
 
 OpenAI presentation/spreadsheet skills and Claude `pptx`/`xlsx` skills are examples
 of usable adapters, not mandatory plugin dependencies. If a specific skill is
@@ -131,7 +132,7 @@ draft, never a completed check. Kopi does not install dependencies automatically
 
 Start a new conversation with Kopi enabled:
 
-1. Confirm that all ten skills in the README catalog are available.
+1. Confirm that all eleven skills in the README catalog are available.
 2. Ask: “Use Kopi to compare a modular monolith and microservices for a small
    internal tool. Use only these facts: three engineers, one database, one deployment.”
    Confirm it uses `decide-architecture` and its decision-record reference.
@@ -140,6 +141,10 @@ Start a new conversation with Kopi enabled:
 4. Ask it to analyze a supplied spreadsheet. Check the saved file and calculation
    verification, or the explicitly reported missing capability.
 5. Ask for a meeting draft with no invitations sent. Confirm no calendar write occurs.
+6. Use `write-performance-review` with fictional feedback and self-reflection.
+   Confirm it first shows private evidence tables and numbered ideas, waits for
+   your observations/selection, and then produces separate employee and manager
+   reports with reviewer attribution confined to the manager copy.
 
 Repository tests validate packaging and resource integrity. They do not prove
 that a particular account, app version, or connector can execute every workflow.
