@@ -1,0 +1,17 @@
+{
+  "name": "kopi-plugins",
+  "owner": {
+    "name": "Kopi contributors"
+  },
+  "plugins": [
+    {
+      "name": "kopi",
+      "source": "./",
+      "description": "Evidence-led workflows for project managers and software architects.",
+      "version": "0.1.1"
+    }
+  ],
+  "metadata": {
+    "description": "Project management and software architecture workflows from Kopi."
+  }
+}

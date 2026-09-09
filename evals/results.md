@@ -34,3 +34,26 @@
 The original no-Kopi baseline commonly stopped at outlines, blurred authority for external writes, omitted read-back and duplicate prevention, weakened freshness and citation controls, jumped to a single architecture design, and treated project recall as code archaeology. The implemented pack adds explicit controls for each of those failure modes.
 
 The incomplete architecture row is recorded rather than reported as a pass. Re-run that case from [`scenarios.md`](scenarios.md) when the isolated execution service is stable.
+
+## Portability update — 2026-09-09, version 0.1.1
+
+The earlier behavioral results above belong to version 0.1.0. This update adds
+portable/Claude packaging and capability-based artifact adapters.
+
+- Eleven deterministic unit tests pass, including renamed checkouts, malformed
+  metadata, version drift, clean/reproducible ZIPs, extracted resource integrity,
+  OpenAI marketplace resolution, and protection against replacing changed output.
+- Root manifest passes the official Agent Plugins 1.0.0 JSON Schema.
+- Claude plugin and marketplace manifests pass the installed Claude CLI's strict
+  validator. The Codex compatibility manifest passes the plugin-creator validator.
+- Independent instruction-level scenarios found that the old named requirements
+  blocked equivalent host tools. Revised instructions allow available PPTX/XLSX
+  skills or equivalent tools, block missing generation capabilities, and label
+  artifacts with missing visual verification/recalculation as drafts.
+- Independent code review identified a repeat-install symlink hazard in the Cursor
+  guide. The guide now checks both existing files and symlinks before creating one.
+
+These are structural checks and instruction-level scenarios, not live workflow
+runs in Claude, ChatGPT, or Cursor. Fresh host installation, connector access,
+artifact generation/rendering, and formula recalculation remain user-environment
+smoke checks described in INSTALL.md. No public marketplace publication occurred.

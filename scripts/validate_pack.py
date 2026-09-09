@@ -22,6 +22,19 @@ LEGACY_TERMS = (
     "gh pr",
 )
 RESOURCE_DIRS = ("references", "playbooks")
+PORTABLE_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
+
+
+def read_object(path: Path, issues: list[str]) -> dict:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        issues.append(f"{path}: unable to read JSON ({error})")
+        return {}
+    if not isinstance(value, dict):
+        issues.append(f"{path}: must contain a JSON object")
+        return {}
+    return value
 
 
 def _frontmatter(path: Path, text: str) -> tuple[dict[str, str], list[str]]:
@@ -106,20 +119,34 @@ def validate_plugin(root: Path) -> list[str]:
     """Return validation issues for the plugin manifest and every included skill."""
     root = Path(root).resolve()
     issues: list[str] = []
+    portable = read_object(root / "plugin.json", issues)
+    if portable.get("$schema") != PORTABLE_SCHEMA:
+        issues.append(f"{root / 'plugin.json'}: missing supported Agent Plugins schema")
+    if portable.get("name") != "kopi":
+        issues.append(f"{root / 'plugin.json'}: name must be kopi")
+    for relative in (".claude-plugin/plugin.json", ".codex-plugin/plugin.json"):
+        platform = read_object(root / relative, issues)
+        for field in ("name", "version", "description", "author", "license"):
+            if platform.get(field) != portable.get(field):
+                issues.append(f"{root / relative}: {field} must match root plugin.json")
+    marketplace = read_object(root / ".claude-plugin/marketplace.json", issues)
+    entries = marketplace.get("plugins", [])
+    if not isinstance(entries, list) or len(entries) != 1 or not isinstance(entries[0], dict):
+        issues.append("Claude marketplace must contain exactly one plugin entry")
+    else:
+        entry = entries[0]
+        if entry.get("source") != "./" or entry.get("name") != portable.get("name"):
+            issues.append("Claude marketplace must resolve kopi to the repository root (./)")
+        if entry.get("version") != portable.get("version"):
+            issues.append("Claude marketplace version must match root plugin.json")
     manifest_path = root / ".codex-plugin" / "plugin.json"
     manifest: dict[str, object] = {}
 
-    if not manifest_path.is_file():
-        issues.append(f"{manifest_path}: missing plugin manifest")
-    else:
-        try:
-            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError as error:
-            issues.append(f"{manifest_path}: invalid JSON ({error})")
+    manifest = read_object(manifest_path, issues)
 
     if manifest:
-        if manifest.get("name") != root.name:
-            issues.append(f"{manifest_path}: name must match plugin directory '{root.name}'")
+        if manifest.get("name") != "kopi":
+            issues.append(f"{manifest_path}: name must be kopi")
         version = manifest.get("version")
         if not isinstance(version, str) or not SEMVER_RE.fullmatch(version):
             issues.append(f"{manifest_path}: version must be semantic versioning")
@@ -134,6 +161,9 @@ def validate_plugin(root: Path) -> list[str]:
             skills_dir = root / "skills"
         else:
             skills_dir = (root / skills_value).resolve()
+            if skills_value != "./skills/":
+                issues.append(f"{manifest_path}: skills must point to ./skills/")
+                skills_dir = root / "skills"
             if not skills_dir.is_dir():
                 issues.append(f"{manifest_path}: skills path does not resolve to a directory")
         interface = manifest.get("interface")

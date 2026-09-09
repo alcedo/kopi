@@ -1,4 +1,6 @@
 import importlib.util
+import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -61,6 +63,36 @@ class ValidatePackTests(unittest.TestCase):
     def test_real_pack_is_valid(self):
         root = Path(__file__).parents[1]
         self.assertEqual([], validate_pack.validate_plugin(root))
+
+    def copy_pack(self, directory):
+        root = Path(directory) / "kopi-main"
+        shutil.copytree(Path(__file__).parents[1], root,
+                        ignore=shutil.ignore_patterns(".git", "dist", "__pycache__"))
+        return root
+
+    def test_renamed_checkout_is_valid(self):
+        with tempfile.TemporaryDirectory() as directory:
+            self.assertEqual([], validate_pack.validate_plugin(self.copy_pack(directory)))
+
+    def test_missing_portable_manifest_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = self.copy_pack(directory)
+            (root / "plugin.json").unlink(missing_ok=True)
+            self.assertTrue(any(f"{root / 'plugin.json'}:" in issue for issue in validate_pack.validate_plugin(root)))
+
+    def test_platform_version_drift_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = self.copy_pack(directory)
+            path = root / ".claude-plugin/plugin.json"
+            path.parent.mkdir(exist_ok=True)
+            path.write_text(json.dumps({"name": "kopi", "version": "9.0.0"}))
+            self.assertTrue(any("version" in issue for issue in validate_pack.validate_plugin(root)))
+
+    def test_non_object_manifest_is_reported(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = self.copy_pack(directory)
+            (root / ".codex-plugin/plugin.json").write_text('[1]')
+            self.assertTrue(any("JSON object" in issue for issue in validate_pack.validate_plugin(root)))
 
 
 if __name__ == "__main__":

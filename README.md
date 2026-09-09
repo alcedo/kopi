@@ -9,6 +9,7 @@ while keeping each workflow independently usable.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Codex Plugin](https://img.shields.io/badge/Codex-Plugin-blue.svg)](.codex-plugin/plugin.json)
+[![Agent Plugins](https://img.shields.io/badge/Agent_Plugins-1.0-blue.svg)](plugin.json)
 [![Skills](https://img.shields.io/badge/Skills-10-green.svg)](#-skill-catalog)
 [![Validation](https://img.shields.io/badge/Validation-deterministic-brightgreen.svg)](#-validation)
 
@@ -21,6 +22,7 @@ The central router is [`kopi-mode`](skills/kopi-mode/SKILL.md). Start there when
 ## 📑 Contents
 
 - [Layers](#-layers)
+- [Installation](#-installation)
 - [Skill catalog](#-skill-catalog)
 - [Operating model](#-operating-model)
 - [Example requests](#-example-requests)
@@ -28,6 +30,28 @@ The central router is [`kopi-mode`](skills/kopi-mode/SKILL.md). Start there when
 - [Validation](#-validation)
 - [Intentional boundary](#-intentional-boundary)
 - [License](#-license)
+
+## 📦 Installation
+
+Kopi packages the same ten skills for **Claude Code, Claude chat/Cowork,
+ChatGPT Work/Codex, and Cursor**. See the [installation guide](INSTALL.md) for
+local installation, updates, prerequisites, and host smoke checks.
+
+From the repository root, build the portable plugin ZIP and OpenAI local marketplace:
+
+```bash
+python3 scripts/package_plugin.py
+```
+
+Use `dist/kopi-0.1.1.zip` for Claude upload or extraction into Cursor's local
+plugin folder. For ChatGPT Work/Codex, register the generated
+`dist/kopi-openai-0.1.1` marketplace and install through the Plugins Directory.
+Claude Code can also load this checkout directly with `claude --plugin-dir .`.
+
+These are local distribution packages, not public marketplace listings. Host
+and account capabilities determine which workflows can execute. Presentation,
+spreadsheet, calendar, and source-access tools are supplied by your environment;
+Kopi does not install libraries or connect accounts.
 
 ## 🧱 Layers
 
@@ -80,7 +104,12 @@ Each workflow can run alone. When composed, records retain source pointers and s
 
 ```text
 kopi/
+├── plugin.json
+├── .claude-plugin/
+│   ├── plugin.json
+│   └── marketplace.json
 ├── .codex-plugin/plugin.json
+├── INSTALL.md
 ├── skills/
 │   ├── kopi-mode/
 │   │   ├── SKILL.md
@@ -91,7 +120,8 @@ kopi/
 │       └── references/
 ├── evals/
 ├── scripts/validate_pack.py
-└── tests/test_validate_pack.py
+├── scripts/package_plugin.py
+└── tests/
 ```
 
 ## ✅ Validation
@@ -99,17 +129,23 @@ kopi/
 Run the deterministic pack checks from the repository root:
 
 ```bash
-python3 -m unittest kopi/tests/test_validate_pack.py -v
-python3 kopi/scripts/validate_pack.py kopi
+python3 -m unittest discover -s tests -v
+python3 scripts/validate_pack.py .
 ```
 
-The validator checks the manifest, skill metadata, resource reachability, internal links, unfinished placeholders, and legacy implementation terms. The behavioral cases and latest run record are in [`evals/scenarios.md`](evals/scenarios.md) and [`evals/results.md`](evals/results.md).
+The validator checks cross-platform manifest consistency, Claude marketplace
+resolution, skill metadata, resource reachability, internal links, unfinished
+placeholders, and legacy implementation terms. Packaging tests also check clean,
+reproducible archives and OpenAI marketplace resolution. These checks do not
+replace a fresh install in each host. The behavioral cases and run records are
+in [`evals/scenarios.md`](evals/scenarios.md) and [`evals/results.md`](evals/results.md).
 
 ## 🚧 Intentional boundary
 
 Kopi is **not** a software-delivery agent. It does not carry over pull-request mechanics, worktree handling, CI monitoring, deployment workflows, TDD rules, language-specific coding conventions, or autonomous code repair. Once an architecture decision becomes implementation work, hand that scope to dedicated engineering skills.
 
-The plugin manifest is repository-local. This build does not modify a personal or team marketplace.
+The build creates distribution files under `dist/`. It does not install plugins,
+modify personal marketplaces, or publish to shared directories.
 
 ## 📄 License
 

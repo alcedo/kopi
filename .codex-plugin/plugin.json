@@ -1,6 +1,6 @@
 {
   "name": "kopi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Evidence-led workflows for project managers and software architects.",
   "author": {
     "name": "Kopi contributors"
@@ -29,5 +29,7 @@
       "Prepare and schedule an architecture review.",
       "Research recent framework changes and their impact."
     ]
-  }
+  },
+  "homepage": "https://github.com/alcedo/kopi",
+  "repository": "https://github.com/alcedo/kopi"
 }
