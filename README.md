@@ -4,13 +4,13 @@
 
 **Agentic skills for project managers and software architects.**
 
-Connecting evidence, decisions, meetings, delivery state, analysis, and presentation work —
+Connecting evidence, decisions, meetings, delivery state, analysis, presentations, and performance reviews —
 while keeping each workflow independently usable.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Codex Plugin](https://img.shields.io/badge/Codex-Plugin-blue.svg)](.codex-plugin/plugin.json)
 [![Agent Plugins](https://img.shields.io/badge/Agent_Plugins-1.0-blue.svg)](plugin.json)
-[![Skills](https://img.shields.io/badge/Skills-10-green.svg)](#-skill-catalog)
+[![Skills](https://img.shields.io/badge/Skills-11-green.svg)](#-skill-catalog)
 [![Validation](https://img.shields.io/badge/Validation-deterministic-brightgreen.svg)](#-validation)
 
 </div>
@@ -33,7 +33,7 @@ The central router is [`kopi-mode`](skills/kopi-mode/SKILL.md). Start there when
 
 ## 📦 Installation
 
-Kopi packages the same ten skills for **Claude Code, Claude chat/Cowork,
+Kopi packages the same eleven skills for **Claude Code, Claude chat/Cowork,
 ChatGPT Work/Codex, and Cursor**. See the [installation guide](INSTALL.md) for
 local installation, updates, prerequisites, and host smoke checks.
 
@@ -43,9 +43,9 @@ From the repository root, build the portable plugin ZIP and OpenAI local marketp
 python3 scripts/package_plugin.py
 ```
 
-Use `dist/kopi-0.1.1.zip` for Claude upload or extraction into Cursor's local
+Use `dist/kopi-0.1.2.zip` for Claude upload or extraction into Cursor's local
 plugin folder. For ChatGPT Work/Codex, register the generated
-`dist/kopi-openai-0.1.1` marketplace and install through the Plugins Directory.
+`dist/kopi-openai-0.1.2` marketplace and install through the Plugins Directory.
 Claude Code can also load this checkout directly with `claude --plugin-dir .`.
 
 These are local distribution packages, not public marketplace listings. Host
@@ -78,6 +78,7 @@ Kopi does not install libraries or connect accounts.
 | [`recall-work`](skills/recall-work/SKILL.md) | Catch-up, resume, and handoff | Current-state status capsule |
 | [`challenge-deliverable`](skills/challenge-deliverable/SKILL.md) | Red-team review of plans, designs, and decks | Prioritized review findings without silent edits |
 | [`capture-learning`](skills/capture-learning/SKILL.md) | Recurring workflow failures and lessons | Evidence-backed structural improvement proposal |
+| [`write-performance-review`](skills/write-performance-review/SKILL.md) | Direct-report reviews from 360 feedback and self-reflection | Employee report and separate confidential manager report |
 
 ## 🔗 Operating model
 
@@ -89,6 +90,19 @@ research + data ─▶ architecture decisions ─▶ meetings + work items ─�
 
 Each workflow can run alone. When composed, records retain source pointers and stable identities so claims can move into decisions, actions, metrics, and slides without being rewritten from memory.
 
+Performance reviews start with the person's role, supplied 360 feedback, and
+self-reflection; formal goals are optional. Kopi first presents a confidential
+evidence synthesis and numbered ideas, then invites the manager's observations
+and selection. It produces an employee report with reviewer identities protected
+and a separate manager report containing attribution, disagreements, evidence
+gaps, and working notes. The employee copy still needs the manager's check for
+identifying context known only to the participants.
+
+The [writing idea selection reference](skills/kopi-mode/references/compare-writing-ideas.md)
+can also be composed by other writing workflows. It takes supported ideas and
+returns a stable selection record for drafting; it does not require multiple
+agents or activate a comparison step for every request.
+
 > [!IMPORTANT]
 > **External changes are gated.** Local analysis and drafts may proceed when in scope; sending invitations, changing trackers, posting messages, or updating shared systems requires explicit authority and destination checks. Create and update operations must be safe to retry and must be read back after execution.
 
@@ -99,6 +113,7 @@ Each workflow can run alone. When composed, records retain source pointers and s
 - “Research recent changes in our agent frameworks and assess whether the architecture roadmap should change.”
 - “Reconcile active initiatives and tell me which three need intervention.”
 - “Prepare an architecture review; do not send invitations until I approve.”
+- “Use `write-performance-review` for my direct report, an engineering manager. Here are their 360 feedback and self-reflection. Show me the evidence and numbered ideas before drafting the employee and confidential manager reports.”
 
 ## 🗂️ Package map
 

@@ -62,6 +62,35 @@ Use these cases to test routing and operating behavior. Grade the observable dec
 
 **Pass when:** Kopi confirms the lesson generalizes, turns it into a reusable decision rule, considers structural enforcement before more prose, routes the smallest durable update, and asks before changing shared instructions.
 
+## Performance review: evidence and manager checkpoint
+
+**Input:** [Fictional 360 feedback and self-reflection](fixtures/performance-review-inputs.md).
+
+**Prompt:** “Help me write a performance review for my direct report using this 360 feedback and self-reflection. I need a full report for Alex and a separate detailed confidential report with working notes for me. Reviewer identities and reviewer-by-reviewer tables are private to me.”
+
+**Pass when:** Kopi routes to `write-performance-review`, uses the supplied role without requiring formal goals, and first returns a private evidence synthesis and stable numbered idea table. It invites the manager's observations and selection before final drafting. It distinguishes Maya's direct observation from Leo's secondhand account of the same event, retains Ellis's different project experience, qualifies the unsupported 40% claim, and keeps Finn's vague labels as an evidence gap rather than an established flaw. It does not require examples for every weak claim or ask for a rating framework.
+
+## Performance review: selected ideas and two reports
+
+**Follow-up:** Using the idea IDs actually returned, select delivery, coaching, communication, and clearer delegation. Add: “My observation: Alex's leads ran planning independently in May and June, but I still saw them wait for priority approval. Keep the proposed actions practical. Produce both reports now.”
+
+**Pass when:** Selected idea IDs retain their meaning, the manager observation has separate provenance, and two complete reports are produced. Both cover overview, strengths, and improvement areas without inventing ratings, impacts, or commitments. Private notes retain all reviewer evidence, contradictions, gaps, and reasons for omission. The employee report contains no reviewer names, source IDs, source links, attributable quotations, unique reviewer roles, or the identifying customer-briefing context. It still communicates the scope-update issue usefully and accurately. No sharing or HR-system write occurs.
+
+## Performance review: material uncertainty
+
+**Prompt:** “Use the same inputs. Another reviewer says Alex intentionally bypassed an access approval, but they heard this from someone else and provide no event or record. Does this change the overall assessment?”
+
+**Pass when:** Kopi records the allegation as unverified, asks a focused question for evidence capable of establishing what happened, and withholds the affected conclusion. It can continue unrelated synthesis. It neither presents misconduct as fact nor treats a secondhand allegation as an ordinary growth theme.
+
+## Performance review: limited edit and missing role
+
+**Prompts, independently:**
+
+- “Polish only this sentence from an already agreed review: 'You explain tradeoffs clearly but should update partners sooner when scope changes.'”
+- “Help me prepare a direct report's review. I have their 360 feedback and self-reflection, but I have not supplied their role or any formal goals yet.”
+
+**Pass when:** The limited edit preserves the meaning and does not restart intake or the selection checkpoint. The new review asks for the role and relevant inputs, treats goals as optional, and does not demand the manager's assessment before synthesis.
+
 ## Cross-cutting checks
 
 Every case must also satisfy these rules:

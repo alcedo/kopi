@@ -1,10 +1,14 @@
 # Kopi Evaluation Results
 
-**Behavioral runs:** 2026-09-03 to 2026-09-04  
-**Latest deterministic verification:** 2026-09-04  
-**Pack version:** 0.1.0
+- **Behavioral runs:** 2026-09-03 to 2026-09-09
+- **Latest deterministic verification:** 2026-09-09
+- **Pack version:** 0.1.2
 
 ## Deterministic checks
+
+This table and the behavioral table below record the 0.1.0 baseline, when the
+pack had ten skills and five validator tests. Later version sections supersede
+their counts.
 
 | Check | Result |
 |---|---|
@@ -57,3 +61,40 @@ These are structural checks and instruction-level scenarios, not live workflow
 runs in Claude, ChatGPT, or Cursor. Fresh host installation, connector access,
 artifact generation/rendering, and formula recalculation remain user-environment
 smoke checks described in INSTALL.md. No public marketplace publication occurred.
+
+## Performance review addition — 2026-09-09, version 0.1.2
+
+These runs exercise the new instructions using the fictional packet in
+[performance-review-inputs.md](fixtures/performance-review-inputs.md) and the
+prompts in [scenarios.md](scenarios.md). Evaluators produced actual responses
+in temporary files, which were read and assessed. They were not given expected
+answers or the implementation conversation. Baseline and skill-enabled runs
+used separate agents; the manager-selection follow-up continues the skill-enabled
+conversation so its existing idea IDs can be checked.
+
+| Scenario | Result | Observed behavior |
+|---|---|---|
+| Baseline without the new skill | Failed the selection checkpoint | Opened with “The first report is written for Alex” and produced both full reports immediately. It handled source dependence and privacy well, but offered no numbered idea table and no opportunity for manager judgment before drafting. |
+| Skill-enabled evidence synthesis | Pass | Read all five reviews and self-reflection, returned source and theme tables plus ideas 1–7, recommended a combination, and stopped for manager observations and selection. Goals remained optional. |
+| Manager selection and two full reports | Pass | Continued with IDs 1, 2, 4, and 5 and a new manager observation. Produced separate complete Markdown reports without another checkpoint. Preserved IDs, attributed the addition to M1, and kept unselected ideas 3, 6, and 7 in private working notes rather than the employee assessment. |
+| Employee confidentiality | Pass for the fictional packet | Read the employee report in full and checked identifying terms. Reviewer names, source IDs/links, the distinctive quote, unique briefing context, exact incident dates, and proposal counts were absent. The behavior-level communication finding and mixed evidence remained useful; private notes retained attribution and residual inference risks. |
+| Evidence calibration | Pass at synthesis | Distinguished the firsthand Orion event from its secondhand repetition; retained positive Atlas communication evidence; deferred the unverified 40% metric and unsupported strategy/presence labels without blocking the supported review. |
+| Material uncertainty | Pass | Treated a secondhand access-approval allegation as unresolved, withheld conclusions about misconduct, asked for a firsthand account or record, and continued unrelated theme synthesis. |
+| Limited edit | Pass | Returned a polished sentence without reopening intake or requesting a new selection. |
+| Missing role and optional goals | Pass | Asked for role and source inputs, explicitly treated formal goals as optional, and deferred manager judgment until after synthesis. |
+
+An independent read-only review of the implementation found no actionable
+issues in scope, composition, packaging, evidence handling, or confidentiality.
+This review did not substitute for the behavioral runs.
+
+All eleven deterministic unit tests pass. Pack validation and the skill-creator
+quick validator pass; packaging checks confirm all eleven skills and their
+linked resources survive extraction. The fixed skill-count assertion was
+replaced with a comparison against the source skill inventory. Whitespace checks
+also pass.
+
+These are bounded text-based exercises, not a guarantee of reviewer anonymity
+or a live run with an employee's actual feedback. Document rendering, hidden
+file metadata, connected-source access, HR-system writes, and installed-host
+discovery were not exercised. No plugin installation, release publication, or
+external sharing was performed.

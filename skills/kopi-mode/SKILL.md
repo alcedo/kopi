@@ -1,6 +1,6 @@
 ---
 name: kopi-mode
-description: Use when project-management or software-architecture work spans presentations, meetings, portfolios, technology research, architecture decisions, data analysis, recall, or several connected deliverables.
+description: Use when project-management or software-architecture work spans presentations, meetings, portfolios, technology research, architecture decisions, data analysis, performance reviews, recall, or several connected deliverables.
 ---
 
 # Kopi Mode
@@ -28,6 +28,7 @@ Treat named but unavailable inputs as missing. Search only the active workspace 
 | Catch up, resume, handoff, where work stopped | [Recall](playbooks/recall.md) | `recall-work` |
 | Challenge, stress-test, red-team, find blind spots | [Critical review](playbooks/critical-review.md) | `challenge-deliverable` |
 | Retrospective lesson or recurring workflow correction | [Learning capture](playbooks/learning-capture.md) | `capture-learning` |
+| Direct-report performance review, 360 feedback, manager assessment | [Performance review](playbooks/performance-review.md) | `write-performance-review` |
 | Several connected deliverables or workstreams | [Integrated program](playbooks/integrated-program.md) | Route to each required skill in dependency order |
 
 ## Compose
@@ -35,6 +36,12 @@ Treat named but unavailable inputs as missing. Search only the active workspace 
 Sequence workflows by dependency. Data and research produce evidence. Architecture work turns evidence into a decision. Meetings resolve or assign decisions. Portfolio control tracks resulting work. Presentations communicate the result.
 
 Parallelize only independent evidence collection or option generation. Give each worker a distinct source, question, or artifact. Aggregate before making a decision.
+
+For writing that calls for user selection among themes or framings, compose
+[compare writing ideas](references/compare-writing-ideas.md). The owning skill
+supplies evidence and audience boundaries, then drafts from the selected IDs.
+Keep confidential performance-review evidence out of other deliverables unless
+the user explicitly includes it in that scope and the destination audience is appropriate.
 
 ## Finish
 
